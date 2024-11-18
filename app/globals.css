@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 20% 95%;
+    --foreground: 25 100% 29%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 25 100% 29%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 100% 29%;
+    
+    /* Earthy primary color - Forest Green */
+    --primary: 142 59% 49%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Warm accent - Terra Cotta */
+    --accent: 14 80% 53%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Natural secondary - Sage */
+    --secondary: 106 25% 65%;
+    --secondary-foreground: 25 30% 20%;
+    
+    /* Muted earth tones */
+    --muted: 25 30% 90%;
+    --muted-foreground: 25 30% 40%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 142 30% 80%;
+    --input: 142 30% 80%;
+    --ring: 142 59% 49%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 25 30% 10%;
+    --foreground: 60 20% 95%;
+    
+    /* Darker variants for dark mode */
+    --card: 25 30% 15%;
+    --card-foreground: 60 20% 95%;
+    
+    --popover: 25 30% 15%;
+    --popover-foreground: 60 20% 95%;
+    
+    --primary: 142 45% 45%;
+    --primary-foreground: 0 0% 100%;
+    
+    --accent: 14 70% 45%;
+    --accent-foreground: 0 0% 100%;
+    
+    --secondary: 106 20% 45%;
+    --secondary-foreground: 60 20% 95%;
+    
+    --muted: 25 30% 20%;
+    --muted-foreground: 60 20% 80%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 25 30% 20%;
+    --input: 25 30% 20%;
+    --ring: 142 45% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Card styles with backdrop blur and enhanced contrast */
+.card {
+  @apply bg-white/90 dark:bg-black/80 backdrop-blur-sm shadow-lg border border-white/20 dark:border-black/20;
+}
+
+/* Parallax and animation utilities */
+@layer utilities {
+  .parallax {
+    transform: translateZ(0);
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgb(var(--primary) / 0.2);
+  }
+
+  .scroll-trigger {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-trigger.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Timeline styles */
+.timeline {
+  @apply relative pl-8 border-l-2 border-primary/30;
+}
+
+.timeline-item {
+  @apply relative mb-8;
+}
+
+.timeline-item::before {
+  content: '';
+  @apply absolute -left-[33px] w-4 h-4 rounded-full bg-primary;
+}
+
+.timeline-item::after {
+  content: '';
+  @apply absolute -left-[29px] top-5 w-2 h-full bg-primary/20;
+}
+
+.timeline-item:last-child::after {
+  @apply hidden;
+}
